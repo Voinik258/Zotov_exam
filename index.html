@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LingConnect - Learn Russian</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-light text-dark">
+
+<header class="bg-primary text-white p-3 mb-4">
+    <div class="container d-flex justify-content-between align-items-center">
+        <h1 class="h3">LingConnect</h1>
+        <nav>
+            <a href="Exammap.html" class="text-white mx-2">Map</a>
+            <a href="#courses" class="text-white mx-2">Courses</a>
+            <a href="#about" class="text-white mx-2">About</a>
+            <a href="#contacts" class="text-white mx-2">Contacts</a>
+            <a href="cabinet.html" class="text-white mx-2">Profile</a>
+        </nav>
+    </div>
+</header>
+
+<!-- Уведомления -->
+<div id="notifications" class="container mb-3">
+    <div class="alert alert-info text-center">New courses available this month! 🚀</div>
+</div>
+
+<!-- Инф-ия -->
+<section id="about" class="container mb-4">
+    <h2>About Our School</h2>
+    <p>We offer immersive Russian language courses designed for foreigners. Our mission is to make learning Russian engaging and accessible at every level.</p>
+</section>
+
+<!-- Преимущества -->
+<section id="advantages" class="container mb-4">
+    <h2>Why Learn Russian?</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="p-3 border bg-white rounded">🌍 Global communication opportunities</div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-3 border bg-white rounded">🧠 Enhance your cognitive skills</div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-3 border bg-white rounded">💼 Boost your career in international markets</div>
+        </div>
+    </div>
+</section>
+
+<!-- Модальное окно оформления заявки -->
+<div class="modal fade" id="requestModal" tabindex="-1" aria-labelledby="requestModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="requestModalLabel">Оформление заявки</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="requestForm">
+                    <div class="mb-3">
+                        <label for="courseSelect" class="form-label">Курс</label>
+                        <select class="form-select" id="courseSelect">
+                            <!-- Курс заполняется динамически -->
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nameInput" class="form-label">Ваше имя</label>
+                        <input type="text" class="form-control" id="nameInput" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="emailInput" class="form-label">Ваш Email</label>
+                        <input type="email" class="form-control" id="emailInput" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="preferredContact" class="form-label">Предпочтительный способ связи</label>
+                        <select class="form-select" id="preferredContact">
+                            <option value="email">Email</option>
+                            <option value="phone">Телефон</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Отправить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Курсы -->
+<section id="courses" class="container mb-4">
+    <h2>Courses</h2>
+    <input type="text" id="courseSearch" class="form-control mb-3" placeholder="Search by course name or level">
+    <div class="row" id="courseList"></div>
+    <nav>
+        <ul class="pagination justify-content-center mt-3" id="pagination"></ul>
+    </nav>
+</section>
+
+<!-- Преподаватели -->
+<div class="container">
+    <h2 class="mb-4">Поиск репетитора</h2>
+
+    <!-- Поисковая форма -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <label for="languageLevel" class="form-label">Уровень языка</label>
+            <select id="languageLevel" class="form-select">
+                <option value="">Любой</option>
+                <option value="начальный">Начальный</option>
+                <option value="средний">Средний</option>
+                <option value="продвинутый">Продвинутый</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label for="availableDays" class="form-label">Доступные дни</label>
+            <select id="availableDays" class="form-select" multiple>
+                <option value="Пн">Пн</option>
+                <option value="Вт">Вт</option>
+                <option value="Ср">Ср</option>
+                <option value="Чт">Чт</option>
+                <option value="Пт">Пт</option>
+                <option value="Сб">Сб</option>
+                <option value="Вс">Вс</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label for="availableTime" class="form-label">Время (часы)</label>
+            <input type="text" id="availableTime" class="form-control" placeholder="например: 10-18">
+        </div>
+    </div>
+
+    <!-- Таблица репетиторов -->
+    <table class="table table-hover" id="tutorsTable">
+        <thead>
+            <tr>
+                <th>Фото</th>
+                <th>Имя</th>
+                <th>Уровень</th>
+                <th>Языки</th>
+                <th>Опыт (лет)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <!-- Детальная карточка выбранного репетитора -->
+    <div id="selectedTutorDetails" class="card mt-4 d-none">
+        <div class="card-body d-flex align-items-center">
+            <img id="detailPhoto" src="" alt="Фото" class="rounded me-3" width="100">
+            <div>
+                <h5 id="detailName"></h5>
+                <p><strong>Языки:</strong> <span id="detailLanguages"></span></p>
+                <p><strong>Опыт:</strong> <span id="detailExperience"></span> лет</p>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Кнопка для подачи заявки -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#applicationModal">
+    Подать заявку
+</button>
+  
+<!-- Модальное окно -->
+<div class="modal fade" id="applicationModal" tabindex="-1" aria-labelledby="applicationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="applicationModalLabel">Заявка на курс</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Форма подачи заявки -->
+                <form id="applicationForm">
+                    <div class="mb-3">
+                        <label class="form-label">Выберите курс</label>
+                        <div id="courseSelection" class="form-check">
+                            <!-- Радио-кнопки для курсов будут вставляться сюда с помощью JS -->
+                        </div>
+                    </div>
+                
+                    <div class="mb-3">
+                        <label class="form-label">Выберите преподавателя</label>
+                        <div id="tutorSelection" class="form-check">
+                            <!-- Радио-кнопки для преподавателей будут вставляться сюда с помощью JS -->
+                        </div>
+                    </div>
+                
+                    <div class="mb-3">
+                        <label for="courseStartDate" class="form-label">Дата начала курса</label>
+                        <input type="date" class="form-control" id="courseStartDate" required>
+                    </div>
+                
+                    <div class="mb-3">
+                        <label for="courseTime" class="form-label">Время занятий</label>
+                        <select class="form-select" id="courseTime" required>
+                            <option value="">Выберите время</option>
+                        </select>
+                    </div>
+                
+                    <div class="mb-3">
+                        <label for="totalPrice" class="form-label">Общая стоимость</label>
+                        <input type="text" class="form-control" id="totalPrice" readonly>
+                    </div>
+                
+                    <button type="submit" class="btn btn-primary">Отправить заявку</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<footer class="bg-dark text-white p-3 mt-4">
+    <div id="contacts" class="container text-center">
+        Contact us at: <a href="mailto:info@lingconnect.ru" class="text-white">info@lingconnect.ru</a> |
+        <a href="#" class="text-white">VK</a> |
+        <a href="#" class="text-white">Telegram</a> |
+        <a href="#" class="text-white">8-800-555-35-35</a> 
+    </div>
+</footer>
+
+<script src="courses.js"></script>
+<script src="tutors.js"></script>
+<script src="main.js"></script>
+<script src="zakaz.js"></script>
+<script defer src="api.js"></script>
+<script defer src="ui.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>LingConnect – Поиск репетитора</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding: 2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2 class="mb-4">Поиск репетитора</h2>
+
+        <!-- Поисковая форма -->
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <label for="languageLevel" class="form-label">Уровень языка</label>
+                <select id="languageLevel" class="form-select">
+                    <option value="">Любой</option>
+                    <option value="начальный">Начальный</option>
+                    <option value="средний">Средний</option>
+                    <option value="продвинутый">Продвинутый</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="availableDays" class="form-label">Доступные дни</label>
+                <select id="availableDays" class="form-select" multiple>
+                    <option value="Пн">Пн</option>
+                    <option value="Вт">Вт</option>
+                    <option value="Ср">Ср</option>
+                    <option value="Чт">Чт</option>
+                    <option value="Пт">Пт</option>
+                    <option value="Сб">Сб</option>
+                    <option value="Вс">Вс</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="availableTime" class="form-label">Время (часы)</label>
+                <input type="text" id="availableTime" class="form-control" placeholder="например: 10-18">
+            </div>
+        </div>
+
+        <!-- Таблица репетиторов -->
+        <table class="table table-hover" id="tutorsTable">
+            <thead>
+                <tr>
+                    <th>Фото</th>
+                    <th>Имя</th>
+                    <th>Уровень</th>
+                    <th>Языки</th>
+                    <th>Опыт (лет)</th>
+                    <th>Ставка (₽/час)</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <!-- Детальная карточка выбранного репетитора -->
+        <div id="selectedTutorDetails" class="card mt-4 d-none">
+            <div class="card-body d-flex align-items-center">
+                <img id="detailPhoto" src="" alt="Фото" class="rounded me-3" width="100">
+                <div>
+                    <h5 id="detailName"></h5>
+                    <p><strong>Языки:</strong> <span id="detailLanguages"></span></p>
+                    <p><strong>Опыт:</strong> <span id="detailExperience"></span> лет</p>
+                    <p><strong>Ставка:</strong> <span id="detailRate"></span> ₽/час</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="tutors.js"></script>
+</body>
+</html>
