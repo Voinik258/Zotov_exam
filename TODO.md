@@ -1,8 +1,8 @@
 # TODO: Fix Database Connection Errors
 
 ## Tasks
-- [ ] Modify config.py to default to SQLite when DATABASE_URL is not set
-- [ ] Update elib/models.py to remove MySQL-specific table arguments for database agnosticism
-- [ ] Test the app locally with SQLite
-- [ ] Ensure migrations work with SQLite
-- [ ] Verify the app runs without MySQL dependency
+- [x] Modify config.py to default to SQLite when DATABASE_URL is not set
+- [x] Update elib/models.py to remove MySQL-specific table arguments for database agnosticism
+- [x] Test the app locally with SQLite
+- [x] Ensure migrations work with SQLite
+- [x] Verify the app runs without MySQL dependency
