@@ -7,3 +7,4 @@ python-dotenv==1.0.1
 Markdown==3.6
 bleach==6.1.0
 Flask-Migrate==4.0.7
+gunicorn==23.0.0
