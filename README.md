@@ -1,1 +1,9 @@
-Главная страница сайта https://voinik258.github.io/Zotov_exam/
+Сайт с приложением https://zotov-exam.onrender.com/
+
+Пользователи:
+admin
+zotov_vp
+ivanov_ii
+petrov_pp
+
+Общий пароль: password
